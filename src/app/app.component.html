@@ -1,0 +1,28 @@
+<div style="margin-bottom: 1em">
+  <kendo-grid
+    [data]="gridView"
+    [height]="500"
+    [selectable]="{enabled: true, checkboxOnly: true }"
+    [kendoGridSelectBy]="'userId'"
+    [selectedKeys]="selectedUsers"
+    (selectionChange)="onSelectionChange()"
+    [scrollable]="'virtual'"
+    [rowHeight]="35"
+    [pageSize]="pageSize"
+    [skip]="skip"
+    (pageChange)="pageChange($event)"
+    (selectedKeysChange)="onSelectedKeysChange($event)">
+      <kendo-grid-checkbox-column showSelectAll="true">
+        <ng-template kendoGridHeaderTemplate>
+            <input class="k-checkbox" id="selectAllCheckboxId" kendoGridSelectAllCheckbox
+                [state]="selectAllState"
+                (selectAllChange)="onSelectAllChange($event)">
+            <label class="k-checkbox-label" for="selectAllCheckboxId"></label>
+        </ng-template>
+      </kendo-grid-checkbox-column>
+      <kendo-grid-column field="userId" title="User ID"></kendo-grid-column>
+      <kendo-grid-column field="username" title="Username"></kendo-grid-column>
+  </kendo-grid>
+</div>
+
+<button class="k-button" (click)="addMoreUsers()">Add More Users</button>
